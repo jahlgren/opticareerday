@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply absolute inset-0 overflow-auto flex flex-col bg-white font-body text-typography-black text-xl;
+
+    & > div {
+      @apply grow;
+    }
+  }
+}
+
+.Toastify__toast {
+  @apply text-base;
+
+  &-body {
+    @apply pr-4;
+  }
+}

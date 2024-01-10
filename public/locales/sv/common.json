@@ -1,0 +1,21 @@
+{
+  "change-lang": "Vaihda kieli suomeksi",
+  "welcome-heading": "Välkommen till OptiCareer-Day!",
+  "welcome-message": "Hoppas att du har eller kommer att ha en lärorik och trevlig dag hos oss. Som en del av programmet kommer vi att ha ett quiz där du kan testa dina kunskaper om nejdens företag och vinna fina priser.",
+  "open-quiz": "Öppna quizet",
+  "participating-companies": "Företag som deltar i evenemanget",
+
+  "quiz-start-message": "Denna utmaning innehåller frågor om företagen som deltar i evenemanget. Observera att du endast har en chans att svara på alla frågor och att tiden startar när du trycker på startknappen.",
+  "quiz-name-input": "Namn (för- och efternamn)",
+  "quiz-email-input": "Email",
+  "quiz-data-storage": "* Datan sparas endast under quiz-tillfället och tas bort senast i slutet av dagen",
+  "quiz-start": "Starta quizet",
+  "quiz-start-input-error": "Du måste fylla i både namn och en korrekt e-post",
+  "quiz-preparing": "förbereder quiz",
+  "quiz-error-something-went-wrong": "Något gick fel",
+  "quiz-error-try-again": "Prova igen",
+  "quiz-end-message": "Tack för att du svarat på vårt quiz!",
+  "quiz-end-correct-answers": "Du svarade rätt på {?} frågor",
+  "quiz-end-incorrect-answers": "Du svarade fel på {?} frågor",
+  "quiz-question": "Fråga"
+}
