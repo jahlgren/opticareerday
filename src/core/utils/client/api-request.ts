@@ -9,17 +9,4 @@ const apiRequest = axios.create({
   },
 });
 
-export const mockApiRequest = <T>(data: T) => {
-  const response: AxiosResponse = {
-    data,
-    status: 200,
-    statusText: 'ok',
-    headers: {'set-cookie': undefined},
-    config: {
-      headers: {}
-    }
-  };
-  return new Promise<AxiosResponse<T, any>>(resolve => resolve(response));
-}
-
 export default apiRequest;
