@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { useQuery } from "react-query"
 import Question from "../../../../core/mikro-orm/shared/entities/Question";
-import apiRequest, { mockApiRequest } from "../../../../core/utils/client/api-request";
+import apiRequest from "../../../../core/utils/client/api-request";
 
 const fetchQuestion = async (id: string) => {
   if(!id) return { question: null };

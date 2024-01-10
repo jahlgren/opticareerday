@@ -15,7 +15,9 @@ export const mockApiRequest = <T>(data: T) => {
     status: 200,
     statusText: 'ok',
     headers: {'set-cookie': undefined},
-    config: {}
+    config: {
+      headers: {}
+    }
   };
   return new Promise<AxiosResponse<T, any>>(resolve => resolve(response));
 }
