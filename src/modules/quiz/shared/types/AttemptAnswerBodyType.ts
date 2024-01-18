@@ -6,8 +6,8 @@ type AttemptAnswerBodyType = {
 };
 
 export const attemptAnswerBodySchema: yup.SchemaOf<AttemptAnswerBodyType> = yup.object({
-  questionId: yup.string().uuid().required(),
-  answerId: yup.string().uuid().required()
+  questionId: yup.string().required(),
+  answerId: yup.string().required()
 });
 
 export default AttemptAnswerBodyType;

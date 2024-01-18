@@ -6,7 +6,35 @@ import { GetStaticProps } from 'next';
 import { useTranslation } from 'next-i18next';
 
 const companyLogos = [
-  { src: "/logos/temp.png", name: "..." },
+  { src: "logos/oy-eur-mark-ab.jpg", name: "Oy Eur-Mark Ab" },
+  { src: "logos/franks-maleri.png", name: "Franks Måleri" },
+  { src: "logos/bs-metall-ab-oy.png", name: "BS-Metall Ab Oy" },
+  { src: "logos/beamex-oy-ab.png", name: "Beamex Oy Ab" },
+  { src: "logos/billerud-finland-oy.jpg", name: "Billerud Finland Oy" },
+  { src: "logos/snellmans-kottforadling-ab.png", name: "Snellmans Köttförädling Ab" },
+  { src: "logos/baltic-yachts.jpg", name: "Baltic Yachts" },
+  { src: "logos/mirka-oy.jpg", name: "Mirka Oy" },
+  { src: "logos/lissn-consulting-ab.jpg", name: "Lissn Consulting Ab" },
+  { src: "logos/amada-automation-europe.png", name: "AMADA Automation Europe" },
+  { src: "logos/ostp-finland-oy-ab.jpg", name: "OSTP Finland Oy Ab" },
+  { src: "logos/tyllis-oy-ab.png", name: "Tyllis Oy Ab" },
+  { src: "logos/nordic-lights.png", name: "Nordic Lights" },
+  { src: "logos/ab-rani-plast-oy.jpg", name: "Ab Rani Plast Oy" },
+  { src: "logos/oy-fluid-bag-ab.png", name: "Oy Fluid-Bag Ab" },
+  { src: "logos/caverion-suomi-oy.svg", name: "Caverion Suomi Oy" },
+  { src: "logos/jnt.jpg", name: "JNT" },
+  { src: "logos/optimaplus-ab.png", name: "OptimaPlus Ab" },
+  { src: "logos/oy-varax-products-ab.png", name: "Oy Varax-Products Ab" },
+  { src: "logos/ab-solving-oy.jpg", name: "Ab Solving Oy" },
+  { src: "logos/kongsberg-maritime-oy-kokkola.png", name: "Kongsberg Maritime Oy Kokkola" },
+  { src: "logos/oy-nautor-ab.png", name: "Oy Nautor Ab" },
+  { src: "logos/handelslaget-kpo.png", name: "Handelslaget KPO" },
+  { src: "logos/attendo-oy.svg", name: "Attendo OY" },
+  { src: "logos/sundstrom-ab-oy.jpg", name: "Sundström Ab Oy" },
+  { src: "logos/osterbottens-valfardsomrade--pohjanmaan-hyvinvointialue.jpg", name: "Österbottens välfärdsområde / Pohjanmaan hyvinvointialue" },
+  { src: "logos/ab-b-portin-oy.png", name: "Ab B: Portin Oy" },
+  { src: "logos/lofs-ab-oy.jpg", name: "Löfs Ab Oy" },
+  { src: "logos/ab-tetrix-oy.jpg", name: "Ab TETRIX Oy" }
 ];
 
 const IndexPage = () => {

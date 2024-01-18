@@ -8,9 +8,6 @@ import UpsertAnswerBodyType, { upsertAnswerBodySchema } from '../../../modules/q
 
 const post: CallbackWithBody<UpsertAnswerBodyType> = async ({ request, response, em, body }) => {
   const answerId = request.query.answerId as string;
-  if(!isUuid(answerId)) {
-    return response.status(200).json({error: 'Invalid answer id'});
-  }
 
   let answer = await em.findOne(Answer, { id: answerId });
   wrap(answer).assign({
@@ -24,9 +21,6 @@ const post: CallbackWithBody<UpsertAnswerBodyType> = async ({ request, response,
 
 const del: Callback = async ({ request, response, em }) => {
   const answerId = request.query.answerId as string;
-  if(!isUuid(answerId)) {
-    return response.status(200).json({error: 'Invalid answer id'});
-  }
   const answer = await em.findOne(Answer, { id: answerId });
   if(!answer) {
     return response.status(200).json({error: 'Answer with id: ' + answerId + ', not found'});

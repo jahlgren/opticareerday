@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "mikro-orm migration:up && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrations-create": "mikro-orm migration:create"
   },
   "dependencies": {
     "@ebay/nice-modal-react": "^1.2.8",

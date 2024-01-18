@@ -5,21 +5,21 @@ import AttemptAnswer from '../../../../core/mikro-orm/shared/entities/AttemptAns
 import Question from '../../../../core/mikro-orm/shared/entities/Question';
 import isUuid from '../../../../core/mikro-orm/shared/utils/is-uuid';
 import handleRequest, { Callback } from '../../../../core/utils/server/handle-request';
+import { MAX_QUESTIONS } from '..';
+
+
 
 const get: Callback = async ({ request, response, em }) => {
   const attemptId = request.query.attemptId as string;
   if(!attemptId) {
     return response.status(200).json({ attempt: null });
   }
-  if(!isUuid(attemptId)) {
-    return response.status(200).json({ error: 'Invalid attempt id' });
-  }
   const attempt = await em.findOne(Attempt, { id: attemptId });
   if(!attempt) {
     return response.status(200).json({ attempt: null });
   }
   
-  const totalQuesitons = await em.count(Question, {});
+  const totalQuesitons = Math.min(MAX_QUESTIONS, await em.count(Question, {}));
   const attemptAnswers = await em.find(AttemptAnswer, { attempt }, {
     populate: ['answer.id', 'answer.isCorrect']
   });
@@ -28,7 +28,7 @@ const get: Callback = async ({ request, response, em }) => {
   if(!attempt.nextQuestion) {
     const questions = await em.find(Question, {});
     const attemptAnswers = await em.find(AttemptAnswer, { attempt });
-    if(questions) {
+    if(questions && attemptAnswers.length < totalQuesitons) {
       const unansweredQuestions: Question[] = questions.filter(
         question => !(attemptAnswers.find(aq => aq.question.id === question.id))
       );
@@ -41,12 +41,13 @@ const get: Callback = async ({ request, response, em }) => {
   // Find total correct answers count
   const correctAnswers = attemptAnswers.filter(aa => aa.answer.isCorrect);
 
-  response.status(200).json({ 
+  const data = { 
     attempt,
     totalQuesitons,
     totalAnswered: attemptAnswers.length,
     totalCorrectAnswers: correctAnswers.length
-  });
+  };
+  response.status(200).json(data);
 }
 
 const handler = (

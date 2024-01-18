@@ -3,6 +3,8 @@ import { DefaultEntityManager, withMikroOrm } from '../../../core/mikro-orm/serv
 import Attempt from '../../../core/mikro-orm/shared/entities/Attempt';
 import handleRequest, { Callback } from '../../../core/utils/server/handle-request';
 
+export const MAX_QUESTIONS = 10;
+
 const del: Callback = async ({response, em}) => {
   await em.nativeDelete(Attempt, {});
   response.status(200).json({ok: true});

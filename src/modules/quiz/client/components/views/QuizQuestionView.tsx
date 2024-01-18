@@ -85,6 +85,7 @@ const QuizQuestionView = ({
           exit={{ x:'-100%', transition: { ease: 'easeIn', duration: 0.2 } }}
         >
           <div className='max-w-[700px]'>
+            <h3 className="w-full text-center mb-4 text-2xl font-medium">{question.company}</h3>
             <p className="text-2xl text-center">{ question.content[i18n.language as 'sv'|'fi'] }</p>
               { answers.length > 0 && (
                 <motion.div

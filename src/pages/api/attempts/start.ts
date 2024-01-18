@@ -4,9 +4,9 @@ import Attempt from '../../../core/mikro-orm/shared/entities/Attempt';
 import Question from '../../../core/mikro-orm/shared/entities/Question';
 import handleRequest, { CallbackWithBody } from '../../../core/utils/server/handle-request';
 import StartAttemptBodyType, { startAttemptBodySchema } from '../../../modules/quiz/shared/types/StartAttemptBodyType';
+import { MAX_QUESTIONS } from '.';
 
 const post: CallbackWithBody<StartAttemptBodyType> = async ({ response, em, body }) => {
-
   const questions = await em.find(Question, {});
   const nextQuestion = questions ? questions[Math.floor(Math.random() * questions.length)] : null;
 
@@ -18,7 +18,7 @@ const post: CallbackWithBody<StartAttemptBodyType> = async ({ response, em, body
 
   await em.flush();
   
-  const totalQuesitons = await em.count(Question, {});
+  const totalQuesitons = Math.min(MAX_QUESTIONS, await em.count(Question, {}));
   // Todo: Find answered count
 
   response.status(200).json({ 

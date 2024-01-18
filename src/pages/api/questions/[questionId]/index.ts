@@ -7,9 +7,6 @@ import EditQuestionBodyType, { editQuestionBodySchema } from '../../../../module
 
 const get: Callback = async ({ request, response, em }) => {
   const questionId = request.query.questionId as string;
-  if(!isUuid(questionId)) {
-    return response.status(200).json({question: null});
-  }
   const question = await em.findOne(Question, { id: questionId }, {
     populate: [ 'answers' ]
   });
@@ -28,9 +25,6 @@ const post: CallbackWithBody<EditQuestionBodyType> = async ({ request, response,
 
 const del: Callback = async ({ request, response, em }) => {
   const questionId = request.query.questionId as string;
-  if(!isUuid(questionId)) {
-    return response.status(200).json({error: 'Invalid question id'});
-  }
   const question = await em.findOne(Question, { id: questionId });
   if(!question) {
     return response.status(200).json({error: 'Question with id: ' + questionId + ', not found'});

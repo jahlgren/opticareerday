@@ -4,6 +4,7 @@ import Attempt from '../../../core/mikro-orm/shared/entities/Attempt';
 import Question from '../../../core/mikro-orm/shared/entities/Question';
 import handleRequest, { Callback, CallbackWithBody } from '../../../core/utils/server/handle-request';
 import StartAttemptBodyType, { startAttemptBodySchema } from '../../../modules/quiz/shared/types/StartAttemptBodyType';
+import { MAX_QUESTIONS } from '.';
 
 export type ResultType = {
   attemptId: string,
@@ -15,7 +16,7 @@ export type ResultType = {
 
 const get: Callback = async ({ response, em }) => {
   const questions = await em.find(Question, {});
-  const totalQuesitons = questions ? questions.length : 0;
+  const totalQuesitons = Math.min(MAX_QUESTIONS, questions ? questions.length : 0);
 
   const attempts = await em.find(Attempt, {}, {
     populate: ['attemptAnswers.answer']

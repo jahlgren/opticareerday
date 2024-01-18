@@ -19,6 +19,12 @@
 .DS_Store
 *.pem
 
+# scripts
+*.xls
+*.xlsx
+scripts/parse-excel-data/logos
+scripts/parse-excel-data/output.txt
+
 # debug
 npm-debug.log*
 yarn-debug.log*

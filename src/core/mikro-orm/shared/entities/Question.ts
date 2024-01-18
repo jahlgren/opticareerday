@@ -1,4 +1,4 @@
-import { Entity, Property, PrimaryKey, JsonType, OneToMany, Collection, Cascade } from "@mikro-orm/core";
+import { Entity, Property, PrimaryKey, JsonType, OneToMany, Collection, Cascade, StringType } from "@mikro-orm/core";
 import uuid from "binary-uuid";
 import { UuidBinaryType } from "../types/UuidBinaryType";
 import Answer from "./Answer";
@@ -8,6 +8,9 @@ class Question {
   
   @PrimaryKey({ type: UuidBinaryType })
   id: string = uuid().uuid;
+
+  @Property({type: StringType})
+  company: string;
 
   @Property({ type: JsonType })
   content!: { sv: string, fi: string };

@@ -1,6 +1,5 @@
 import { toBinaryUUID, fromBinaryUUID } from 'binary-uuid';
-import { EntityProperty, Platform, Type, ValidationError } from '@mikro-orm/core';
-import isUuid from '../utils/is-uuid';
+import { EntityProperty, Platform, Type } from '@mikro-orm/core';
 
 export class UuidBinaryType extends Type {
   convertToDatabaseValue(value: string, platform: Platform): any {
@@ -10,10 +9,6 @@ export class UuidBinaryType extends Type {
 
     if(Buffer.isBuffer(value))
       return value;
-
-    if (!isUuid(value)) {
-      throw ValidationError.invalidType(UuidBinaryType, value, 'JS');
-    }
 
     const binaryUuid = toBinaryUUID(value);
     return binaryUuid;

@@ -6,6 +6,7 @@ import AttemptAnswer from '../../../../core/mikro-orm/shared/entities/AttemptAns
 import Question from '../../../../core/mikro-orm/shared/entities/Question';
 import handleRequest, { CallbackWithBody } from '../../../../core/utils/server/handle-request';
 import AttemptAnswerBodyType, { attemptAnswerBodySchema } from '../../../../modules/quiz/shared/types/AttemptAnswerBodyType';
+import { MAX_QUESTIONS } from '..';
 
 const post: CallbackWithBody<AttemptAnswerBodyType> = async ({ request, response, em, body }) => {
   
@@ -34,9 +35,12 @@ const post: CallbackWithBody<AttemptAnswerBodyType> = async ({ request, response
 
   // Find next question
   const questions = await em.find(Question, {});
-  if(questions) {
+  if(attemptAnswers.length >= MAX_QUESTIONS) {
+    attempt.endedAt = new Date();
+    attempt.nextQuestion = null;
+  } else if(questions) {
     const unansweredQuestions: Question[] = questions.filter(
-      question => !(attemptAnswers.find(aq => aq.question.id === question.id))
+      question => !(attemptAnswers.find(aq => String(aq.question.id) == String(question.id)))
     );
     attempt.nextQuestion = unansweredQuestions[Math.floor(Math.random() * unansweredQuestions.length)];
   }
@@ -59,13 +63,14 @@ const post: CallbackWithBody<AttemptAnswerBodyType> = async ({ request, response
   const correctAnswers = attemptAnswers.filter(aa => aa.answer.isCorrect);
 
   // Response
-  response.status(200).json({
+  const data = {
     attempt,
-    totalQuesitons: questions.length,
+    totalQuesitons: Math.min(MAX_QUESTIONS, questions.length),
     totalAnswered: attemptAnswers.length,
     totalCorrectAnswers: correctAnswers.length,
     correctAnswerIds
-  });
+  };
+  response.status(200).json(data);
 }
 
 const handler = (
