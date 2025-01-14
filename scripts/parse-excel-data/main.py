@@ -14,11 +14,11 @@ import codecs
 
 output_file = 'output.txt'
 
-excel_file_name = 'Quzzfragor_OCD_2024.xlsx'
-excel_sheet_swedish = 'Svenska'
-excel_sheet_finnish = 'Finska'
+excel_file_name = 'Quizzfragor.xlsx'
+excel_sheet_swedish = 'Frågorna på Svenska'
+excel_sheet_finnish = 'Frågorna på Finska'
 
-excel_row_skip = 0 # how many rows to skip (ex. header row)
+excel_row_skip = 1 # how many rows to skip (ex. header row)
 
 excel_col_company_name = 0
 excel_col_logo_url = 1
